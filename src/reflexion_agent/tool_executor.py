@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from langchain_tavily import TavilySearch
-from langchain_core.tools import structuredTool
+from langchain_core.tools import StructuredTool
 from langgraph.prebuilt import ToolNode
 from .schemas import AnswerQuestion, ReviseAnswer
 
@@ -16,7 +16,7 @@ def run_queries(search_queries: list[str], **kwargs):
 
 execute_tools = ToolNode(
     [
-        structuredTool.from_function(run_queries, name=AnswerQuestion.__name__),
-        structuredTool.from_function(run_queries, name=ReviseAnswer.__name__),
+        StructuredTool.from_function(run_queries, name=AnswerQuestion.__name__),
+        StructuredTool.from_function(run_queries, name=ReviseAnswer.__name__),
     ]
 )
